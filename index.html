@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="game" width="500" height="500"></canvas>
+    <p><strong>Click counter: </strong><span id="counter">0</span></p>
+    <p><strong>Rank: </strong><span id="rank">Noob</span></p>
+
+    <script>
+        const canvas = document.getElementById("game");
+        const ctx = canvas.getContext("2d"); 
+        const counterText = document.getElementById("counter");
+        const rankText = document.getElementById("rank");
+
+        let x = 250;
+        let y = 250;
+        let counter = 0;
+
+        function gameLoop() {
+            ctx.fillStyle = "blue";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "white";
+            ctx.fillRect(x, y, 50, 50);
+        }
+
+        canvas.addEventListener("click", function(event) {
+    const mouseX = event.offsetX;
+    const mouseY = event.offsetY;
+
+    if (
+        mouseX >= x &&
+        mouseX <= x + 50 &&
+        mouseY >= y &&
+        mouseY <= y + 50
+    ) {
+        counter += 1;
+        counterText.textContent = counter;
+
+        if (counter < 20) {
+        rankText.textContent = "Noob";
+    } else if (counter < 40) {
+        rankText.textContent = "Casual Gamer";
+    } else if (counter < 60) {
+        rankText.textContent = "Gamer";
+    } else if (counter < 80) {
+        rankText.textContent = "Pro Gamer";
+    } else if (counter < 100) {
+        rankText.textContent = "Master Clicker";
+    } else if (counter < 250) {
+        rankText.textContent = "Legend";
+    } else if (counter < 500) {
+        rankText.textContent = "Legend";
+    } else if (counter < 1000) {
+        rankText.textContent = "God";
+    } else if (counter < 10000) {
+        rankText.textContent = "Hacker";
+    }
+
+        x = Math.random() * 450;
+        y = Math.random() * 450;
+        gameLoop();
+    }
+});
+
+    
+
+        gameLoop();
+    </script>
+</body>
+</html>
